@@ -37,14 +37,13 @@ import java.util.logging.Logger;
  *
  * @author Joost de Meij - joost@riddles.io, Jim van Eeden - jim@riddles.io
  */
-public class TurnBasedGameLoop implements GameLoopInterface<PlayerResponseProcessor<AbstractState, AbstractPlayer>> {
+public class TurnBasedGameLoop<S extends AbstractState> implements GameLoopInterface<PlayerResponseProcessor<S, AbstractPlayer>, S> {
 
     private final static Logger LOGGER = Logger.getLogger(AbstractProcessor.class.getName());
 
     @Override
-    public AbstractState run(AbstractState initialState,
-                             PlayerResponseProcessor<AbstractState, AbstractPlayer> processor) {
-        AbstractState state = initialState;
+    public S run(S initialState, PlayerResponseProcessor<S, AbstractPlayer> processor) {
+        S state = initialState;
         int roundNumber = 0;
 
         while (state != null && !processor.hasGameEnded(state)) {
@@ -59,16 +58,13 @@ public class TurnBasedGameLoop implements GameLoopInterface<PlayerResponseProces
         return state;
     }
 
-    private AbstractState playRound(
-            PlayerResponseProcessor<AbstractState, AbstractPlayer> processor,
-            int roundNumber,
-            AbstractState state) {
+    private S playRound(PlayerResponseProcessor<S, AbstractPlayer> processor, int roundNumber, S state) {
         LOGGER.info(String.format("Playing round %d", roundNumber));
 
         ArrayList<AbstractPlayerState> playerStates = state.getPlayerStates();
 
         return playerStates.stream()
-            .reduce(state, (AbstractState intermediateState, AbstractPlayerState playerState) -> {
+            .reduce(state, (S intermediateState, AbstractPlayerState playerState) -> {
                 if (processor.hasGameEnded(intermediateState)) {
                     return intermediateState;
                 }

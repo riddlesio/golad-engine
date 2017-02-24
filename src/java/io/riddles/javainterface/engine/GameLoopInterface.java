@@ -33,7 +33,7 @@ import io.riddles.javainterface.game.state.AbstractState;
  *
  * @author Jim van Eeden - jim@riddles.io
  */
-public interface GameLoopInterface<Pr extends AbstractProcessor<AbstractState, AbstractPlayer>> {
+public interface GameLoopInterface<Pr extends AbstractProcessor, S extends AbstractState> {
 
-    AbstractState run(AbstractState initialState, Pr processor);
+    S run(S initialState, Pr processor);
 }

@@ -60,7 +60,7 @@ public abstract class AbstractEngine<Pr extends AbstractProcessor,
     protected IOInterface ioHandler;
     protected PlayerProvider<Pl> playerProvider;
     protected Pr processor;
-    protected GameLoopInterface gameLoop;
+    protected GameLoopInterface<Pr, S> gameLoop;
 
     protected AbstractEngine(PlayerProvider<Pl> playerProvider, IOInterface ioHandler) throws TerminalException {
         this.playerProvider = playerProvider;
@@ -98,7 +98,7 @@ public abstract class AbstractEngine<Pr extends AbstractProcessor,
     /**
      * This method starts the engine.
      */
-    public S run(S initialState) throws TerminalException, InterruptedException {
+    public S run(S initialState) throws TerminalException {
         LOGGER.info("Running Engine...");
 
         if (this.processor == null) {
@@ -107,8 +107,7 @@ public abstract class AbstractEngine<Pr extends AbstractProcessor,
 
         LOGGER.info("Starting game loop...");
 
-        this.gameLoop.run(initialState, this.processor);
-        return initialState;
+        return this.gameLoop.run(initialState, this.processor);
     }
 
     /**

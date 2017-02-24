@@ -38,14 +38,14 @@ import io.riddles.javainterface.game.state.AbstractState;
  *
  * @author Jim van Eeden - jim@riddles.io
  */
-public class SimpleGameLoop implements GameLoopInterface<SimpleProcessor<AbstractState, AbstractPlayer>> {
+public class SimpleGameLoop<S extends AbstractState> implements GameLoopInterface<SimpleProcessor<S, AbstractPlayer>, S> {
 
     protected final static Logger LOGGER = Logger.getLogger(SimpleGameLoop.class.getName());
 
     @Override
-    public AbstractState run(AbstractState initialState, SimpleProcessor processor) {
+    public S run(S initialState, SimpleProcessor<S, AbstractPlayer> processor) {
 
-        AbstractState state = initialState;
+        S state = initialState;
         int roundNumber = 0;
 
         while (state != null && !processor.hasGameEnded(state)) {
