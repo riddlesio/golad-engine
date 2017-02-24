@@ -1,0 +1,5 @@
+initialize
+configuration {"randomSeed":{"type":"integer","value":1234567},"maxRounds":{"type":"integer","value":30},"fieldWidth":{"type":"integer","value":20},"fieldHeight":{"type":"integer","value":20},"playerCount":{"type":"integer","value":2},"initialCellsPerPlayer":{"type":"integer","value":50}}}
+start
+details
+game
