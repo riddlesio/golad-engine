@@ -1,5 +1,5 @@
 initialize
-configuration {"maxRounds":{"type":"integer","value":60},"fieldWidth":{"type":"integer","value":18},"fieldHeight":{"type":"integer","value":12},"playerCount":{"type":"integer","value":2},"initialCellsPerPlayer":{"type":"integer","value":50}}}
+configuration {"maxRounds":{"type":"integer","value":60},"fieldWidth":{"type":"integer","value":18},"fieldHeight":{"type":"integer","value":12},"initialCellsPerPlayer":{"type":"integer","value":50}}}
 start
 details
 game

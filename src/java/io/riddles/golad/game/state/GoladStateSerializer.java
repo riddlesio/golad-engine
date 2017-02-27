@@ -48,8 +48,7 @@ public class GoladStateSerializer extends AbstractStateSerializer<GoladState> {
         }
 
         stateObj.put("round", state.getRoundNumber());
-        stateObj.put("board", board.toString());
-        stateObj.put("boardPreview", board.previewToString());
+        stateObj.put("board", board.previewToString());
         stateObj.put("players", players);
 
         return stateObj;

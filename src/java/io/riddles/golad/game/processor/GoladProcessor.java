@@ -80,6 +80,8 @@ public class GoladProcessor extends SimpleProcessor<GoladState, GoladPlayer> {
         for (GoladPlayerState playerState : inputState.getPlayerStates()) {
             GoladPlayer player = getPlayer(playerState.getPlayerId());
             nextState = createNextStateForPlayer(nextState, player, roundNumber);
+
+            if (hasGameEnded(nextState)) break;
         }
 
         return nextState;

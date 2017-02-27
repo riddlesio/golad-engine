@@ -1,0 +1,36 @@
+{
+  "wrapper": {
+    "timebankMax": 1000,
+    "timePerMove": 100,
+    "maxTimeouts": 0,
+    "resultFile": "./resultfile.json"
+  },
+  "match": {
+    "bots": [{
+      "command": "java -cp /home/jim/workspace/golad-starterbot-java/build/classes/main bot.BotStarter"
+    },{
+      "command": "java -cp /home/jim/workspace/golad-starterbot-java/build/classes/main bot.BotStarter"
+    }],
+    "engine": {
+      "command": "java -jar /home/jim/workspace/golad/build/libs/Golad-1.0.0.jar",
+      "configuration": {
+        "maxRounds": {
+          "type": "integer",
+          "value": 60
+        },
+        "boardWidth": {
+          "type": "integer",
+          "value": 18
+        },
+        "boardHeight": {
+          "type": "integer",
+          "value": 16
+        },
+        "initialCellsPerPlayer": {
+          "type": "integer",
+          "value": 50
+        }
+      }
+    }
+  }
+}

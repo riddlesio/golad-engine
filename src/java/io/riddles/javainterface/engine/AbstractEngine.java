@@ -114,7 +114,7 @@ public abstract class AbstractEngine<Pr extends AbstractProcessor,
      * Handles everything that needs to happen after the game is done
      * @param finalState Last state of the game
      */
-    public void didRun(S finalState) {
+    public void didRun(S initialState, S finalState) {
         // let the wrapper know the game has ended
         this.ioHandler.sendMessage("end");
 
@@ -127,7 +127,7 @@ public abstract class AbstractEngine<Pr extends AbstractProcessor,
         // send the game file
         this.ioHandler.waitForMessage("game");
 
-        String playedGame = getPlayedGame(finalState);
+        String playedGame = getPlayedGame(initialState);
         this.ioHandler.sendMessage(playedGame);
     }
 

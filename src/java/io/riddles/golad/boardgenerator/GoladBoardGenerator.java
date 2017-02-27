@@ -82,6 +82,8 @@ public class GoladBoardGenerator {
         populateFirstHalf(board);
         populateSecondHalf(board);
 
+        board.updateFieldPreview();
+
         return board;
     }
 

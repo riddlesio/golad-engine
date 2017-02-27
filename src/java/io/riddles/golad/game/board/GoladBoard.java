@@ -46,8 +46,6 @@ public class GoladBoard extends Board<String> {
         this.playerCount = playerCount;
         this.fields = new String[width][height];
         this.clear();
-
-        updateFieldPreview();
     }
 
     public GoladBoard(int width, int height, int playerCount, String fieldInput) {
@@ -177,6 +175,30 @@ public class GoladBoard extends Board<String> {
         updateFieldPreview();
     }
 
+    /**
+     * For all fields, sets what happens in the next generation
+     * by updating this.fieldsPreview
+     */
+    public void updateFieldPreview() {
+        this.fieldsPreview = getFieldsCopy();
+
+        for (int x = 0; x < this.width; x++) {
+            for (int y = 0; y < this.height; y++) {
+                int[] neighborCount = countNeighbors(x, y);
+                int neighborSum = Arrays.stream(neighborCount).sum();
+
+                if (isAlive(x, y) && (neighborSum < 2 || neighborSum > 3)) { // dies
+                    killField(x, y);
+                } else if (!isAlive(x, y) && neighborSum == 3) {  // born
+                    int playerId = IntStream.range(0, neighborCount.length)
+                            .reduce((max, i) -> neighborCount[i] > neighborCount[max] ? i : max)
+                            .orElseThrow(RuntimeException::new);
+                    birthField(x, y, playerId);
+                }
+            }
+        }
+    }
+
     private void validateKillMove(GoladKillMove move) throws InvalidMoveException {
         Point kill = move.getCoordinate();
 
@@ -208,30 +230,6 @@ public class GoladBoard extends Board<String> {
 
         throw new InvalidMoveException(
                 String.format("%d,%d is not a point on the board", point.x, point.y));
-    }
-
-    /**
-     * For all fields, sets what happens in the next generation
-     * by updating this.fieldsPreview
-     */
-    private void updateFieldPreview() {
-        this.fieldsPreview = getFieldsCopy();
-
-        for (int x = 0; x < this.width; x++) {
-            for (int y = 0; y < this.height; y++) {
-                int[] neighborCount = countNeighbors(x, y);
-                int neighborSum = Arrays.stream(neighborCount).sum();
-
-                if (isAlive(x, y) && (neighborSum < 2 || neighborSum > 3)) { // dies
-                    killField(x, y);
-                } else if (!isAlive(x, y) && neighborSum == 3) {  // born
-                    int playerId = IntStream.range(0, neighborCount.length)
-                            .reduce((max, i) -> neighborCount[i] > neighborCount[max] ? i : max)
-                            .orElseThrow(RuntimeException::new);
-                    birthField(x, y, playerId);
-                }
-            }
-        }
     }
 
     private String[][] getFieldsCopy() {

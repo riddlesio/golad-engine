@@ -39,6 +39,6 @@ public class Golad {
         GoladState firstState = engine.willRun();
         GoladState finalState = engine.run(firstState);
 
-        engine.didRun(finalState);
+        engine.didRun(firstState, finalState);
     }
 }

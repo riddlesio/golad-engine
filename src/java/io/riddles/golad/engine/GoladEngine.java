@@ -55,11 +55,10 @@ public class GoladEngine extends AbstractEngine<GoladProcessor, GoladPlayer, Gol
         Configuration configuration = new Configuration();
         SecureRandom random = new SecureRandom();
 
-        configuration.put("fieldWidth", 20);
-        configuration.put("fieldHeight", 20);
-        configuration.put("playerCount", 2);
+        configuration.put("boardWidth", 20);
+        configuration.put("boardHeight", 20);
         configuration.put("maxRounds", 100);
-        configuration.put("initialCellsPerPlayer", 10);
+        configuration.put("initialCellsPerPlayer", 50);
         configuration.put("randomSeed", random.nextInt());
 
         return configuration;
@@ -83,15 +82,16 @@ public class GoladEngine extends AbstractEngine<GoladProcessor, GoladPlayer, Gol
     @Override
     protected void sendSettingsToPlayer(GoladPlayer player) {
         player.sendSetting("your_botid", player.getId());
-        player.sendSetting("field_width", configuration.getInt("fieldWidth"));
-        player.sendSetting("field_height", configuration.getInt("fieldHeight"));
+        player.sendSetting("board_width", configuration.getInt("boardWidth"));
+        player.sendSetting("board_height", configuration.getInt("boardHeight"));
+        player.sendSetting("max_rounds", configuration.getInt("maxRounds"));
     }
 
     @Override
     protected GoladState getInitialState() {
         // Generate random initial board
-        int width = configuration.getInt("fieldWidth");
-        int height = configuration.getInt("fieldHeight");
+        int width = configuration.getInt("boardWidth");
+        int height = configuration.getInt("boardHeight");
         int playerCount = this.playerProvider.getPlayers().size();
 
         GoladBoardGenerator generator = new GoladBoardGenerator(width, height, playerCount);
