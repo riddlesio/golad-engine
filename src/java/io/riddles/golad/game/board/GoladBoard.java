@@ -80,17 +80,17 @@ public class GoladBoard extends Board<String> {
     }
 
     public String previewToString() {
-        String output = "";
+        StringBuilder output = new StringBuilder();
         String connector = "";
 
         for (int y = 0; y < this.height; y++) {
             for (int x = 0; x < this.width; x++) {
-                output += connector + this.fieldsPreview[x][y];
+                output.append(connector).append(this.fieldsPreview[x][y]);
                 connector = ",";
             }
         }
 
-        return output;
+        return output.toString();
     }
 
     /**

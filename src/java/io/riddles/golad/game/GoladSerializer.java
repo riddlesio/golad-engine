@@ -24,6 +24,12 @@ public class GoladSerializer extends AbstractGameSerializer<GoladProcessor, Gola
 
         game = addDefaultJSON(initialState, game, processor);
 
+        JSONObject board = new JSONObject();
+        board.put("width", initialState.getBoard().getWidth());
+        board.put("height", initialState.getBoard().getHeight());
+
+        game.getJSONObject("settings").put("board", board);
+
         JSONArray states = new JSONArray();
         states.put(stateSerializer.traverseToJson(initialState));
 

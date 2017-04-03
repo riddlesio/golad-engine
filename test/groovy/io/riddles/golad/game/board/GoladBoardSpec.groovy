@@ -1,7 +1,5 @@
 package io.riddles.golad.game.board
 
-import io.riddles.golad.engine.GoladEngine
-import io.riddles.javainterface.configuration.Configuration
 import spock.lang.Specification
 
 /**
@@ -13,10 +11,8 @@ import spock.lang.Specification
  */
 class GoladBoardSpec extends Specification {
 
-    def "test map generator player fields count"() {
+    def "test board mutation"() {
         setup:
-        GoladEngine.configuration = new Configuration()
-        GoladEngine.configuration.put("playerCount", 2)
         String input = ".,.,.,.,.,.,.,.,.,.," +
                        ".,.,.,.,.,.,.,.,.,.," +
                        ".,.,1,1,.,.,.,0,0,.," +

@@ -32,7 +32,7 @@ import io.riddles.javainterface.serialize.Serializer;
  *
  * @author Jim van Eeden - jim@riddles.io
  */
-public abstract class AbstractStateSerializer<S extends AbstractState> implements Serializer<S> {
+public abstract class AbstractStateSerializer<S extends AbstractState> extends Serializer<S> {
 
     public abstract String traverseToString(S state);
 

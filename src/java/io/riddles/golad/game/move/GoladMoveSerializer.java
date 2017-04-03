@@ -14,7 +14,7 @@ import io.riddles.javainterface.serialize.Serializer;
  *
  * @author Jim van Eeden - jim@riddles.io
  */
-public class GoladMoveSerializer implements Serializer<GoladMove> {
+public class GoladMoveSerializer extends Serializer<GoladMove> {
 
     @Override
     public String traverseToString(GoladMove traversible) {
@@ -57,14 +57,5 @@ public class GoladMoveSerializer implements Serializer<GoladMove> {
         }
 
         return moveObj;
-    }
-
-    private JSONObject visitPoint(Point point) {
-        JSONObject pointObj = new JSONObject();
-
-        pointObj.put("x", point.x);
-        pointObj.put("y", point.y);
-
-        return pointObj;
     }
 }

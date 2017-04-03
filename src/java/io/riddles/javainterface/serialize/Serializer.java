@@ -21,6 +21,8 @@ package io.riddles.javainterface.serialize;
 
 import org.json.JSONObject;
 
+import java.awt.Point;
+
 /**
  * io.riddles.javainterface.serialize.Serializer - Created on 8-6-16
  *
@@ -30,9 +32,18 @@ import org.json.JSONObject;
  *
  * @author Jim van Eeden - jim@riddles.io
  */
-public interface Serializer<T> {
+public abstract class Serializer<T> {
 
-    String traverseToString(T traversible);
+    public abstract String traverseToString(T traversible);
 
-    JSONObject traverseToJson(T traversible);
+    public abstract JSONObject traverseToJson(T traversible);
+
+    protected JSONObject visitPoint(Point point) {
+        JSONObject pointObj = new JSONObject();
+
+        pointObj.put("x", point.x);
+        pointObj.put("y", point.y);
+
+        return pointObj;
+    }
 }
