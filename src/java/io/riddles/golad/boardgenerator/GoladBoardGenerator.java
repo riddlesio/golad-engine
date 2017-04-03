@@ -72,8 +72,8 @@ public class GoladBoardGenerator {
             LOGGER.severe("Not able to use SHA1PRNG, using default algorithm");
             this.random = new SecureRandom();
         }
-        int randomSeed = GoladEngine.configuration.getInt("randomSeed");
-        this.random.setSeed(ByteBuffer.allocate(4).putInt(randomSeed).array());
+        String seed = GoladEngine.configuration.getString("seed");
+        this.random.setSeed(seed.getBytes());
     }
 
     public GoladBoard generate() {

@@ -19,8 +19,8 @@
 
 package io.riddles.golad.engine;
 
-import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import io.riddles.golad.game.GoladSerializer;
 import io.riddles.golad.game.board.GoladBoard;
@@ -53,13 +53,12 @@ public class GoladEngine extends AbstractEngine<GoladProcessor, GoladPlayer, Gol
     @Override
     protected Configuration getDefaultConfiguration() {
         Configuration configuration = new Configuration();
-        SecureRandom random = new SecureRandom();
 
         configuration.put("boardWidth", 20);
         configuration.put("boardHeight", 20);
         configuration.put("maxRounds", 100);
         configuration.put("initialCellsPerPlayer", 50);
-        configuration.put("randomSeed", random.nextInt());
+        configuration.put("seed", UUID.randomUUID().toString());
 
         return configuration;
     }
