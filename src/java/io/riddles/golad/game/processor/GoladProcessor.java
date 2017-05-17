@@ -124,6 +124,10 @@ public class GoladProcessor extends SimpleProcessor<GoladState, GoladPlayer> {
             movePerformedState.getBoard().processBirthMove((GoladBirthMove) move, player.getId());
         }
 
+        if (move.getException() != null) {
+            player.sendWarning(move.getException().getMessage());
+        }
+
         GoladPlayerState playerState = movePerformedState.getPlayerStateById(player.getId());
         playerState.setMove(move);
         movePerformedState.updatePlayerStates();
