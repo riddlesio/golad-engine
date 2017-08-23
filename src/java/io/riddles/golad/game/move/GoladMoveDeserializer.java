@@ -41,6 +41,8 @@ public class GoladMoveDeserializer implements Deserializer<GoladMove> {
                     throw new InvalidInputException("Birth move doesn't split into 4 parts");
                 }
                 return visitBirthMove(split[1], split[2], split[3]);
+            case PASS:
+                return new GoladMove((Point) null);
             default:
                 throw new InvalidInputException(
                         String.format("Move type %s not recognized", split[0]));

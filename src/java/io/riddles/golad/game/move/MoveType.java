@@ -19,6 +19,9 @@
 
 package io.riddles.golad.game.move;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * io.riddles.catchfrauds.game.move.ActionType - Created on 20-2-17
  *
@@ -29,20 +32,22 @@ package io.riddles.golad.game.move;
 public enum MoveType {
     KILL,
     BIRTH,
-    NONE;
+    PASS;
+
+    private static final Map<String, MoveType> TYPE_MAP = new HashMap<>();
+
+    static {
+        for (MoveType moveType : values()) {
+            TYPE_MAP.put(moveType.toString(), moveType);
+        }
+    }
+
+    public static MoveType fromString(String string) {
+        return TYPE_MAP.get(string.toLowerCase());
+    }
 
     @Override
     public String toString() {
         return this.name().toLowerCase();
-    }
-
-    public static MoveType fromString(String input) {
-        for (MoveType moveType : MoveType.values()) {
-            if (moveType.toString().equalsIgnoreCase(input)) {
-                return moveType;
-            }
-        }
-
-        return NONE;
     }
 }

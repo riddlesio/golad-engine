@@ -1,15 +1,17 @@
 {
   "wrapper": {
-    "timebankMax": 1000,
-    "timePerMove": 100,
+    "timebankMax": 2000,
+    "timePerMove": 200,
     "maxTimeouts": 0,
-    "resultFile": "./resultfile.json"
+    "resultFile": "./resultfile.json",
+    "propagateBotExitCode": false,
+    "debug": true
   },
   "match": {
     "bots": [{
-      "command": "java -cp /home/jim/workspace/golad-starterbot-java/build/classes/main bot.BotStarter"
+      "command": "java -jar /home/jim/workspace/golad-starterbot-java/build/libs/golad-starterbot-java-1.0.1.jar"
     },{
-      "command": "java -cp /home/jim/workspace/golad-starterbot-java/build/classes/main bot.BotStarter"
+      "command": "java -jar /home/jim/workspace/golad-starterbot-java/build/libs/golad-starterbot-java-1.0.0.jar"
     }],
     "engine": {
       "command": "java -jar /home/jim/workspace/golad/build/libs/Golad-1.0.0.jar",

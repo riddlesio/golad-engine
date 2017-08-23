@@ -49,6 +49,6 @@ public class GoladMove extends AbstractMove {
     }
 
     public MoveType getMoveType() {
-        return null;
+        return MoveType.PASS;
     }
 }

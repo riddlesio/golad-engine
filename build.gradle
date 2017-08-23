@@ -1,13 +1,32 @@
 group 'io.riddles'
-version '1.0.0'
 
 apply plugin: 'groovy'
 apply plugin: 'java'
 apply plugin: 'application'
+apply plugin: 'com.jfrog.artifactory'
 
 sourceCompatibility = 1.8
 
+version '1.0.0'
+
 mainClassName = 'io.riddles.golad.Golad'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.4.0'
+    }
+}
+
+artifactory {
+    resolve {
+        contextUrl = 'http://artifactory.dev.riddles.io/artifactory'
+        repoKey = 'libs-release-local'
+        username = 'anonymous'
+    }
+}
 
 sourceSets {
     main {
@@ -40,8 +59,8 @@ repositories {
 }
 
 dependencies {
+    compile group: 'io.riddles', name: 'javainterface', version: '1.0.7'
     compile group: 'org.json', name: 'json', version: '20160212'
     testCompile 'org.codehaus.groovy:groovy-all:2.4.1'
-    testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
-    testCompile group: 'cglib', name: 'cglib-nodep', version: '3.2.2'
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
 }
