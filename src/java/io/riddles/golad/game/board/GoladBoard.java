@@ -229,7 +229,7 @@ public class GoladBoard extends Board<String> {
         }
 
         throw new InvalidMoveException(
-                String.format("%d,%d is not a point on the board", point.x, point.y));
+                String.format("%d,%d is not a point on the field", point.x, point.y));
     }
 
     private String[][] getFieldsCopy() {

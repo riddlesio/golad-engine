@@ -97,7 +97,7 @@ public class GoladProcessor extends SimpleProcessor<GoladState, GoladPlayer> {
 
     private void sendUpdatesToPlayer(GoladState state, GoladPlayer player) {
         player.sendUpdate("round", state.getRoundNumber());
-        player.sendUpdate("board", state.getBoard().toString());
+        player.sendUpdate("field", state.getBoard().toString());
 
         for (GoladPlayerState targetPlayerState : state.getPlayerStates()) {
             GoladPlayer target = getPlayer(targetPlayerState.getPlayerId());

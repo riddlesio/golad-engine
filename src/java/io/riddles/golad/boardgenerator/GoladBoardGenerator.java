@@ -54,7 +54,7 @@ public class GoladBoardGenerator {
         this.initialCellsPerPlayer = GoladEngine.configuration.getInt("initialCellsPerPlayer");
 
         if (this.height % 2 != 0) {
-            throw new ConfigurationException("Board height must be an even number");
+            throw new ConfigurationException("Field height must be an even number");
         }
 
         if (playerCount != 2) {
@@ -63,7 +63,7 @@ public class GoladBoardGenerator {
 
         if (this.initialCellsPerPlayer * 2> 0.6 * this.width * this.height) {
             throw new ConfigurationException(
-                    "The board is too small for this amount of initial living cells");
+                    "The field is too small for this amount of initial living cells");
         }
 
         try {
