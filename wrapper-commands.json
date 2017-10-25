@@ -9,7 +9,7 @@
   },
   "match": {
     "bots": [{
-      "command": "java -jar /home/jim/workspace/golad-starterbot-java/build/libs/golad-starterbot-java-1.0.0.jar"
+      "command": "python3 /home/jim/development/lightriders-starterbot-python3/main.py"
     },{
       "command": "java -jar /home/jim/workspace/golad-starterbot-java/build/libs/golad-starterbot-java-1.0.0.jar"
     }],

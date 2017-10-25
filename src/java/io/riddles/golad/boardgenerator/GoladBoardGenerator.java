@@ -73,6 +73,7 @@ public class GoladBoardGenerator {
             this.random = new SecureRandom();
         }
         String seed = GoladEngine.configuration.getString("seed");
+        LOGGER.info("RANDOM SEED IS: " + seed);
         this.random.setSeed(seed.getBytes());
     }
 
