@@ -18,4 +18,8 @@ public class GoladKillMove extends GoladMove {
     public MoveType getMoveType() {
         return MoveType.KILL;
     }
+
+    public String toString() {
+        return String.format("%s_%s", MoveType.KILL, pointToString(getCoordinate()));
+    }
 }

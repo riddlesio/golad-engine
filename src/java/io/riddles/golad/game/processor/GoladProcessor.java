@@ -81,7 +81,7 @@ public class GoladProcessor extends SimpleProcessor<GoladState, GoladPlayer> {
             GoladPlayer player = getPlayer(playerState.getPlayerId());
             nextState = createNextStateForPlayer(nextState, player, roundNumber);
 
-            if (hasGameEnded(nextState)) break;
+            if (nextState.getBoard().getAlivePlayerIds().size() <= 1) break;
         }
 
         return nextState;
@@ -102,6 +102,11 @@ public class GoladProcessor extends SimpleProcessor<GoladState, GoladPlayer> {
         for (GoladPlayerState targetPlayerState : state.getPlayerStates()) {
             GoladPlayer target = getPlayer(targetPlayerState.getPlayerId());
             player.sendUpdate("living_cells", target, targetPlayerState.getFieldCount());
+
+            if (player.getId() != target.getId()) {
+                GoladMove lastMove = targetPlayerState.getLastMove();
+                player.sendUpdate("move", target, lastMove == null ? "null" : lastMove.toString());
+            }
         }
     }
 
@@ -124,11 +129,15 @@ public class GoladProcessor extends SimpleProcessor<GoladState, GoladPlayer> {
             movePerformedState.getBoard().processBirthMove((GoladBirthMove) move, player.getId());
         }
 
+        GoladPlayerState playerState = movePerformedState.getPlayerStateById(player.getId());
+
         if (move.getException() != null) {
             player.sendWarning(move.getException().getMessage());
+            playerState.setLastMove(null);
+        } else {
+            playerState.setLastMove(move);
         }
 
-        GoladPlayerState playerState = movePerformedState.getPlayerStateById(player.getId());
         playerState.setMove(move);
         movePerformedState.updatePlayerStates();
 

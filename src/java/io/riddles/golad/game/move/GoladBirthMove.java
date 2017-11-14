@@ -2,6 +2,7 @@ package io.riddles.golad.game.move;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.StringJoiner;
 
 /**
  * io.riddles.golad.game.move.GoladBirthMove - Created on 21-2-17
@@ -25,5 +26,17 @@ public class GoladBirthMove extends GoladMove {
 
     public ArrayList<Point> getSacrificeCoordinates() {
         return this.sacrificeCoordinates;
+    }
+
+    public String toString() {
+        StringJoiner joiner = new StringJoiner("_");
+        joiner.add(MoveType.BIRTH.toString());
+        joiner.add(pointToString(getCoordinate()));
+
+        for (Point sacrificeCoordinate : this.sacrificeCoordinates) {
+            joiner.add(pointToString(sacrificeCoordinate));
+        }
+
+        return joiner.toString();
     }
 }

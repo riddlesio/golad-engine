@@ -51,4 +51,12 @@ public class GoladMove extends AbstractMove {
     public MoveType getMoveType() {
         return MoveType.PASS;
     }
+
+    public String toString() {
+        return MoveType.PASS.toString();
+    }
+
+    public String pointToString(Point point) {
+        return String.format("%d,%d", point.x, point.y);
+    }
 }

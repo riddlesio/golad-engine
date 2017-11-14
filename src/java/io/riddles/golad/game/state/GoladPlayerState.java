@@ -32,10 +32,17 @@ import io.riddles.javainterface.game.state.AbstractPlayerState;
 public class GoladPlayerState extends AbstractPlayerState<GoladMove> {
 
     private int fieldCount;
+    private GoladMove lastMove;
 
     public GoladPlayerState(int playerId) {
         super(playerId);
         this.fieldCount = -1;
+    }
+
+    public GoladPlayerState(GoladPlayerState playerState) {
+        super(playerState.getPlayerId());
+        this.fieldCount = -1;
+        this.lastMove = playerState.getLastMove();
     }
 
     public int getFieldCount() {
@@ -44,5 +51,13 @@ public class GoladPlayerState extends AbstractPlayerState<GoladMove> {
 
     public void setFieldCount(int fieldCount) {
         this.fieldCount = fieldCount;
+    }
+
+    public void setLastMove(GoladMove move) {
+        this.lastMove = move;
+    }
+
+    public GoladMove getLastMove() {
+        return this.lastMove;
     }
 }

@@ -22,6 +22,7 @@ package io.riddles.golad.game.board;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import io.riddles.golad.game.move.GoladBirthMove;
@@ -218,6 +219,14 @@ public class GoladBoard extends Board<String> {
             if (!getFieldFromInput(sacrifice).equals(playerId + "")) {
                 throw new InvalidMoveException("You can only sacrifice your own living cells");
             }
+        }
+
+        ArrayList<Point> distinctPoints = move.getSacrificeCoordinates().stream()
+                .distinct()
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        if (distinctPoints.size() < move.getSacrificeCoordinates().size()) {
+            throw new InvalidMoveException("You can sacrifice a cell only once");
         }
     }
 

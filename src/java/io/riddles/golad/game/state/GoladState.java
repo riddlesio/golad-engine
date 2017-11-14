@@ -50,7 +50,7 @@ public class GoladState extends AbstractState<GoladPlayerState> {
         // Create new player states from current player states
         ArrayList<GoladPlayerState> playerStates = new ArrayList<>();
         for (GoladPlayerState playerState : this.getPlayerStates()) {
-            playerStates.add(new GoladPlayerState(playerState.getPlayerId()));
+            playerStates.add(new GoladPlayerState(playerState));
         }
 
         // Create new state from current state
