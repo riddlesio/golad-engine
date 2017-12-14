@@ -103,7 +103,12 @@ public class GoladBoardGenerator {
 
         for (int i = 0; i < this.initialCellsPerPlayer; i++) {
             int index = this.random.nextInt(halfBoardPoints.size());
-            int player = this.random.nextInt(2);
+
+            int player = 0;
+            if (GoladEngine.configuration.getInt("separateStartingCells") <= 0) {
+                player = this.random.nextInt(2);
+            }
+
             Point point = halfBoardPoints.remove(index);
             board.setFieldAt(point, player + "");
         }

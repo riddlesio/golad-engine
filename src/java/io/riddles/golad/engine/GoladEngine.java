@@ -57,7 +57,8 @@ public class GoladEngine extends AbstractEngine<GoladProcessor, GoladPlayer, Gol
         configuration.put("fieldWidth", 18);
         configuration.put("fieldHeight", 16);
         configuration.put("maxRounds", 100);
-        configuration.put("initialCellsPerPlayer", 50);
+        configuration.put("initialCellsPerPlayer", 40);
+        configuration.put("separateStartingCells", 1);
         configuration.put("seed", UUID.randomUUID().toString());
 
         return configuration;

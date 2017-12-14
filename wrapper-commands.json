@@ -5,7 +5,8 @@
     "maxTimeouts": 0,
     "resultFile": "./resultfile.json",
     "propagateBotExitCode": false,
-    "debug": true
+    "debug": true,
+    "suppressEngineIO": false
   },
   "match": {
     "bots": [{
@@ -14,7 +15,7 @@
       "command": "java -jar /home/jim/workspace/golad-starterbot-java/build/libs/golad-starterbot-java-1.0.0.jar"
     }],
     "engine": {
-      "command": "java -jar /home/jim/workspace/golad/build/libs/Golad-1.0.1.jar",
+      "command": "java -jar /home/jim/workspace/golad/build/libs/Golad-1.1.0.jar",
       "configuration": {
         "maxRounds": {
           "type": "integer",
@@ -30,7 +31,11 @@
         },
         "initialCellsPerPlayer": {
           "type": "integer",
-          "value": 50
+          "value": 40
+        },
+        "separateStartingCells": {
+          "type": "integer",
+          "value": 1
         }
       }
     }
