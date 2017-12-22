@@ -88,15 +88,15 @@ public class GoladProcessor extends SimpleProcessor<GoladState, GoladPlayer> {
     }
 
     private GoladState createNextStateForPlayer(GoladState inputState, GoladPlayer player, int roundNumber) {
-        sendUpdatesToPlayer(inputState, player);
+        sendUpdatesToPlayer(inputState, player, roundNumber);
 
         GoladState movePerformedState = createMovePerformedState(inputState, player, roundNumber);
 
         return createMutatedBoardState(movePerformedState, roundNumber);
     }
 
-    private void sendUpdatesToPlayer(GoladState state, GoladPlayer player) {
-        player.sendUpdate("round", state.getRoundNumber());
+    private void sendUpdatesToPlayer(GoladState state, GoladPlayer player, int roundNumber) {
+        player.sendUpdate("round", roundNumber);
         player.sendUpdate("field", state.getBoard().toString());
 
         for (GoladPlayerState targetPlayerState : state.getPlayerStates()) {
